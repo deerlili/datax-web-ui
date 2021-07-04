@@ -60,16 +60,15 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" width="800px">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px">
-        
         <div style="margin-left: 30px;">
-          <el-input v-model="temp.name"  style="width: 88%">
-           <template slot="prepend">项目名称</template>
+          <el-input v-model="temp.name" style="width: 88%">
+            <template slot="prepend">项目名称</template>
           </el-input>
         </div>
 
         <div style="margin-top: 10px;margin-left: 30px;">
-          <el-input v-model="temp.description"  style="width: 88%">
-           <template slot="prepend">项目描述</template>
+          <el-input v-model="temp.description" style="width: 88%">
+            <template slot="prepend">项目描述</template>
           </el-input>
         </div>
 

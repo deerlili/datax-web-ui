@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <RDBMSWriter v-show="dataSource!=='doris' && dataSource!=='hive' && dataSource!=='hbase' && dataSource!=='mongodb' && dataSource!=='txtfile'" ref="rdbmswriter" @selectDataSource="showDataSource" />
-    <DorisReader v-show="dataSource==='doris'" ref="doriswriter" @selectDataSource="showDataSource" />
+    <DorisWriter v-show="dataSource==='doris'" ref="doriswriter" @selectDataSource="showDataSource" />
     <HiveWriter v-show="dataSource==='hive'" ref="hivewriter" @selectDataSource="showDataSource" />
     <HBaseWriter v-show="dataSource==='hbase'" ref="hbasewriter" @selectDataSource="showDataSource" />
     <MongoDBWriter v-show="dataSource==='mongodb'" ref="mongodbwriter" @selectDataSource="showDataSource" />
@@ -11,14 +11,14 @@
 
 <script>
 import RDBMSWriter from './writer/RDBMSWriter'
-import DorisReader from './writer/DorisWriter'
+import DorisWriter from './writer/DorisWriter'
 import HiveWriter from './writer/HiveWriter'
 import HBaseWriter from './writer/HBaseWriter'
 import MongoDBWriter from './writer/MongoDBWriter'
 import TxtFileWriter from './writer/TxtFileWriter'
 export default {
   name: 'Writer',
-  components: { RDBMSWriter, DorisReader, HiveWriter, HBaseWriter, MongoDBWriter, TxtFileWriter },
+  components: { RDBMSWriter, DorisWriter, HiveWriter, HBaseWriter, MongoDBWriter, TxtFileWriter },
   data() {
     return {
       dataSource: ''
