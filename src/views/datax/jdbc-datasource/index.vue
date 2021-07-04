@@ -122,6 +122,12 @@
            <template slot="prepend">JDBC-URL</template>
           </el-input>
         </div>
+
+        <div style="margin-top: 10px;margin-left: 30px;">
+          <el-input v-if="doris" v-model="temp.connectionParams.loadUrl" placeholder="fe_ip:fe_http_port,fe_ip:fe_http_port" style="width: 88%">
+           <template slot="prepend">LOAD-URL</template>
+          </el-input>
+        </div>
         
 
         <div style="margin-top: 10px;margin-left: 30px;">
@@ -211,6 +217,7 @@ export default {
         'connectionParams.user': [{ required: true, message: 'this is required', trigger: 'blur' }],
         'connectionParams.password': [{ required: true, message: 'this is required', trigger: 'blur' }],
         'connectionParams.jdbcUrl': [{ required: true, message: 'this is required', trigger: 'blur' }],
+        'connectionParams.loadUrl': [{ required: true, message: 'this is required', trigger: 'blur' }],
         'connectionParams.zkAddress': [{ required: true, message: 'this is required', trigger: 'blur' }],
         'connectionParams.database': [{ required: true, message: 'this is required', trigger: 'blur' }]
       },
@@ -223,13 +230,15 @@ export default {
           password: '',
           jdbcUrl: '',
           zkAddress: '',
-          database: ''
+          database: '',
+          loadUrl: '',
         },
         user: '',
         password: '',
         jdbcUrl: '',
         zkAddress: '',
         database: '',
+        loadUrl: '',
         type: '',
         comments: ''
       },
@@ -251,6 +260,7 @@ export default {
       jdbc: true,
       hbase: false,
       mongodb: false,
+      doris: false,
       datasourceParams: ''
     }
   },
@@ -302,7 +312,8 @@ export default {
           password: '',
           jdbcUrl: '',
           zkAddress: '',
-          database: ''
+          database: '',
+          loadUrl: ''
         },
         type: '',
         comments: ''
@@ -343,6 +354,7 @@ export default {
           this.temp.user = this.temp.connectionParams.user
           this.temp.password = this.temp.connectionParams.password
           this.temp.jdbcUrl = this.temp.connectionParams.jdbcUrl
+          this.temp.loadUrl = this.temp.connectionParams.loadUrl
           this.temp.zkAddress = this.temp.connectionParams.zkAddress
           this.temp.database = this.temp.connectionParams.database
           datasourceApi.test(this.temp).then(response => {
@@ -387,6 +399,7 @@ export default {
           tempData.user = this.temp.connectionParams.user
           tempData.password = this.temp.connectionParams.password
           tempData.jdbcUrl = this.temp.connectionParams.jdbcUrl
+          tempData.loadUrl = this.temp.connectionParams.loadUrl
           tempData.zkAddress = this.temp.connectionParams.zkAddress
           tempData.database = this.temp.connectionParams.database
           console.log(tempData)
@@ -405,12 +418,16 @@ export default {
     },
     getShowStrategy(type) {
       if (type === 'HBASE') {
-        this.jdbc = this.mongodb = false
+        this.jdbc = this.mongodb = this.doris = false
         this.hbase = true
       } else if (type === 'MONGODB') {
-        this.jdbc = this.hbase = false
+        this.jdbc = this.hbase = this.doris = false
         this.mongodb = true
         this.temp.jdbcUrl = 'mongodb://[username:password@]host1[:port1][,...hostN[:portN]]][/[database][?options]]'
+      } else if (type === 'DORIS') {
+        this.jdbc = true
+        this.doris = true
+        this.temp.loadUrl = 'mongodb://[username:password@]host1[:port1][,...hostN[:portN]]][/[database][?options]]'
       } else {
         this.hbase = this.mongodb = false
         this.jdbc = true

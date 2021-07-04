@@ -259,7 +259,16 @@ export default {
         whereParams: readerData.where,
         querySql: readerData.querySql
       }
+      const dorisReader = {
+        readerSplitPk: readerData.splitPk,
+        whereParams: readerData.where,
+        querySql: readerData.querySql
+      }
       const rdbmsWriter = {
+        preSql: writeData.preSql,
+        postSql: writeData.postSql
+      }
+      const dorisWriter = {
         preSql: writeData.preSql,
         postSql: writeData.postSql
       }
@@ -275,6 +284,8 @@ export default {
         hiveWriter: hiveWriter,
         rdbmsReader: rdbmsReader,
         rdbmsWriter: rdbmsWriter,
+        dorisReader: dorisReader,
+        dorisWriter: dorisWriter,
         hbaseReader: hbaseReader,
         hbaseWriter: hbaseWriter,
         mongoDBReader: mongoDBReader,
