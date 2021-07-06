@@ -183,16 +183,6 @@ export default {
   name: 'JdbcDatasource',
   components: { Pagination },
   directives: { waves },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   data() {
     return {
       list: null,
@@ -202,7 +192,6 @@ export default {
         current: 1,
         size: 10
       },
-      pluginTypeOptions: ['reader', 'writer'],
       dialogPluginVisible: false,
       pluginData: [],
       dialogFormVisible: false,
@@ -231,14 +220,14 @@ export default {
           jdbcUrl: '',
           zkAddress: '',
           database: '',
-          loadUrl: '',
+          loadUrl: []
         },
         user: '',
         password: '',
         jdbcUrl: '',
         zkAddress: '',
         database: '',
-        loadUrl: '',
+        loadUrl: [],
         type: '',
         comments: ''
       },
@@ -313,7 +302,7 @@ export default {
           jdbcUrl: '',
           zkAddress: '',
           database: '',
-          loadUrl: ''
+          loadUrl: []
         },
         type: '',
         comments: ''
@@ -333,6 +322,7 @@ export default {
           this.temp.user = this.temp.connectionParams.user
           this.temp.password = this.temp.connectionParams.password
           this.temp.jdbcUrl = this.temp.connectionParams.jdbcUrl
+          this.temp.loadUrl = this.temp.connectionParams.loadUrl
           this.temp.zkAddress = this.temp.connectionParams.zkAddress
           this.temp.database = this.temp.connectionParams.database
           datasourceApi.created(this.temp).then(() => {
