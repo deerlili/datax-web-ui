@@ -754,7 +754,7 @@ export default {
         job.triggerJob(param).then(response => {
           this.$notify({
             title: 'Success',
-            message: 'Execute Successfully',
+            message: '执行成功！',
             type: 'success',
             duration: 2000
           })
@@ -769,7 +769,7 @@ export default {
       job.startJob(row.id).then(response => {
         this.$notify({
           title: 'Success',
-          message: 'Start Successfully',
+          message: '启动成功！',
           type: 'success',
           duration: 2000
         })
@@ -779,7 +779,7 @@ export default {
       job.stopJob(row.id).then(response => {
         this.$notify({
           title: 'Success',
-          message: 'Start Successfully',
+          message: '停止成功！',
           type: 'success',
           duration: 2000
         })

@@ -8,7 +8,7 @@
       <el-select v-model="listQuery.logStatus" placeholder="类型" style="width: 200px">
         <el-option v-for="item in logStatusList" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="fetchData">
+      <el-button v-waves class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-search" @click="fetchData">
         搜索
       </el-button>
       <el-button

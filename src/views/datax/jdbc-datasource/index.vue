@@ -220,14 +220,14 @@ export default {
           jdbcUrl: '',
           zkAddress: '',
           database: '',
-          loadUrl: []
+          loadUrl: ''
         },
         user: '',
         password: '',
         jdbcUrl: '',
         zkAddress: '',
         database: '',
-        loadUrl: [],
+        loadUrl: '',
         type: '',
         comments: ''
       },
@@ -302,7 +302,7 @@ export default {
           jdbcUrl: '',
           zkAddress: '',
           database: '',
-          loadUrl: []
+          loadUrl: ''
         },
         type: '',
         comments: ''
@@ -419,7 +419,7 @@ export default {
         this.doris = true
         this.temp.loadUrl = 'mongodb://[username:password@]host1[:port1][,...hostN[:portN]]][/[database][?options]]'
       } else {
-        this.hbase = this.mongodb = false
+        this.hbase = this.mongodb = this.doris = false
         this.jdbc = true
       }
     },
